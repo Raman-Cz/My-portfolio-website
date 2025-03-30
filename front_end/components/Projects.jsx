@@ -18,7 +18,7 @@ const Projects = () => {
         <div className='grid md:grid-cols-2 gap-8'>
           <ProjectItem
             title='Online Chat Application'
-            backgroundImg={chattyImg}
+            backgroundImg={propertyImg}
             projectUrl='/chatty'
             tech='React JS'
           />
