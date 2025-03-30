@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <div>
         <Head>
-          <title>Raman | Full-Stack Developer</title>
-          <meta name="description" />
-        </Head>
+  <title>Raman | Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Raman Singh, a Full-Stack Developer" />
+</Head>
         <Main />
         <About />
         <Skills />
