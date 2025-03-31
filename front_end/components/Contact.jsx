@@ -35,20 +35,20 @@ const Contact = () => {
               </div>
               <div>
               <p className="uppercase pt-8">Connect With Me</p>
-              <div className="flex items-center justify-between py-4">
-                <div className=" rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <FaLinkedinIn size={25} />
-                </div>
-                <div className="rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <FaGithub size={25} />
-                </div>
-                <div className="rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <AiOutlineMail size={25} />
-                </div>
-                <div className="rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <BsFillPersonLinesFill size={25} />
-                </div>
-              </div>
+              <div className="flex items-center justify-between max-w-[330px] m-auto py-4">
+                          <div className=" rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-200" >
+                            <a href="https://www.linkedin.com/in/raman-singh-343b212b7/"  target="_blank" ><FaLinkedinIn size={25}  /></a> 
+                          </div>
+                          <div className="rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-200">
+                            <a href="https://github.com/raman-Cz" target="_blank"><FaGithub size={25} /></a>
+                          </div>
+                          <div className="rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-200">
+                            <a href="mailto:raman.singh.ug22@nsut.ac.in" target="_blank"> <AiOutlineMail size={25} /></a>
+                          </div>
+                          <div className="rounded-full shadow-lg shadow-gray-400 p-5 cursor-pointer hover:scale-105 ease-in duration-200">
+                            <a href="/assets/Current Resume.pdf" download="MyResume.pdf"><BsFillPersonLinesFill size={25} /></a>
+                          </div>
+                        </div>
             </div>
             </div>
             

@@ -1,48 +1,49 @@
-import Image from "next/image";
-import React from "react";
-const images = [
-  "html5",
-  "css",
-  "javascript",
-  "react",
-  "tailwindcss",
-  "nodejs",
-  "nextjs",
-  "expressjs",
-  "mongodb",
+import { motion } from "framer-motion";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
+import { SiTailwindcss, SiMongodb, SiNextdotjs, SiExpress } from "react-icons/si";
+
+const skills = [
+  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
+  { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
+  { name: "JavaScript", icon: <FaJs className="text-yellow-500" /> },
+  { name: "React", icon: <FaReact className="text-blue-400" /> },
+  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400" /> },
+  { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
+  { name: "Next.js", icon: <SiNextdotjs className="text-gray-400" /> },
+  { name: "Express.js", icon: <SiExpress className="text-gray-500" /> },
+  { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
 ];
-const Skills = () => {
+
+export default function SkillsShowcase() {
   return (
-    <div id="skills" className="w-full lg:h-screen p-2">
-      <div className="max-w-[1240px] mx-auto flex flex-col justify-center h-full">
-        <p className="text-xl tracking-widest uppercase text-[#5651e5]">
-          Skills
-        </p>
-        <h2 className="py-4">What I can Do</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {images.map((image) => {
-            return (
-              <div className="p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300">
-                <div className="grid grid-cols-2 gap-4 justify-center items-center">
-                  <div className="m-auto">
-                    <Image
-                      src={`/assets/skills/${image}.png`}
-                      alt="/"
-                      width={64}
-                      height={64}
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center uppercase">
-                    <h3>{image}</h3>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+    <div id="skills" className="min-h-screen bg-white text-black flex flex-col items-center justify-center px-6 relative overflow-hidden">
+      
+      
+      <h2 className="text-5xl font-extrabold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg">
+        My Tech Stack
+      </h2>
+      
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-5xl">
+        {skills.map((skill, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.2, rotate: 3 }}
+            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            className="relative group flex flex-col items-center p-8 bg-white/10 backdrop-blur-lg shadow-lg rounded-3xl border border-white/20 hover:border-white/40 transition duration-300"
+          >
+            <div className="text-6xl mb-4 transition-all group-hover:scale-110 group-hover:rotate-6 drop-shadow-md">
+              {skill.icon}
+            </div>
+            <p className="text-xl font-semibold tracking-wide text-gray-800 group-hover:text-black transition">
+              {skill.name}
+            </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover:opacity-20 transition-all rounded-3xl"></div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
-};
-
-export default Skills;
+}

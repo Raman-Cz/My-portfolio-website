@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import propertyImg from '../public/assets/projects/property.jpg';
-import cryptoImg from '../public/assets/projects/crypto.jpg'
-import netflixImg from '../public/assets/projects/netflix.jpg'
-import twitchImg from '../public/assets/projects/twitch.jpg'
+import RealtimeChatImg from '../public/assets/projectImages/RealtimeChatImg.png';
+import SpotifyCloneImg from '../public/assets/projectImages/SpotifyCloneImg.png';
+import AdminDashboardImg from '../public/assets/projectImages/AdminDashboardImg.png';
+import AdvancedAuthImg from '../public/assets/projectImages/AdvancedAuthImg.png';
+
 import ProjectItem from './ProjectItem';
 
 const Projects = () => {
@@ -18,29 +19,29 @@ const Projects = () => {
         <div className='grid md:grid-cols-2 gap-8'>
           <ProjectItem
             title='Online Chat Application'
-            backgroundImg={propertyImg}
-            projectUrl='/chatty'
-            tech='React JS'
+            backgroundImg={RealtimeChatImg}
+            projectUrl='https://chatty-for-chatting.onrender.com'
+            tech='MERN tailwindcss Socket-Io'
           />
           <ProjectItem
-            title='Crypto App'
-            backgroundImg={cryptoImg}
-            projectUrl='/crypto'
-            tech='React JS'
+            title='Spotify Clone'
+            backgroundImg={SpotifyCloneImg}
+            projectUrl='https://spotify-clone-z0hi.onrender.com'
+            tech='MERN tailwindcss shadcn clerk'
 
           />
           <ProjectItem
-            title='Netflix App'
-            backgroundImg={netflixImg}
-            projectUrl='/netflix'
-            tech='React JS'
+            title='Admin Dashboard'
+            backgroundImg={AdminDashboardImg}
+            projectUrl='https://admin-dashboard-lilac-two-83.vercel.app/'
+            tech='React Lucide-react framer-motion'
 
           />
           <ProjectItem
-            title='Twitch UI'
-            backgroundImg={twitchImg}
-            projectUrl='/twitch'
-            tech='Next JS'
+            title='Advanced Authentication System'
+            backgroundImg={AdvancedAuthImg}
+            projectUrl='https://advanced-authentication-53j9.onrender.com/'
+            tech='MERN tailwindcss Mailtrap'
 
           />
         </div>
