@@ -5,6 +5,8 @@ import RealtimeChatImg from '../public/assets/projectImages/RealtimeChatImg.png'
 import SpotifyCloneImg from '../public/assets/projectImages/SpotifyCloneImg.png';
 import AdminDashboardImg from '../public/assets/projectImages/AdminDashboardImg.png';
 import AdvancedAuthImg from '../public/assets/projectImages/AdvancedAuthImg.png';
+import ExpenseTrackerImg from '../public/assets/projectImages/ExpenseTrackerImg.png';
+import XCloneImg from '../public/assets/projectImages/XCloneImg.png';
 
 import ProjectItem from './ProjectItem';
 
@@ -35,6 +37,20 @@ const Projects = () => {
             backgroundImg={AdminDashboardImg}
             projectUrl='https://admin-dashboard-lilac-two-83.vercel.app/'
             tech='React Lucide-react framer-motion'
+
+          />
+          <ProjectItem
+            title='Expense Tracker'
+            backgroundImg={ExpenseTrackerImg}
+            projectUrl='https://expense-tracker-frontend-sage.vercel.app/'
+            tech='MERN CSS '
+
+          />
+          <ProjectItem
+            title='Advanced Authentication System'
+            backgroundImg={XCloneImg}
+            projectUrl='https://x-clone-b8bm.onrender.com'
+            tech='MERN tailwindcss DaisyUi'
 
           />
           <ProjectItem
