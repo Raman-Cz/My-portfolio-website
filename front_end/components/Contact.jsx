@@ -26,7 +26,7 @@ const Contact = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     try {
-      const message = axios.post("http://localhost:4000/api/message", formData);
+      const message = axios.post("https://myportfolio-backend-d9oe.onrender.com/api/message", formData);
       toast.success("Message sent successfully!");
       setFormData({name: "",
         phoneNumber: "",
