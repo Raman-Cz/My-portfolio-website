@@ -7,7 +7,8 @@ import AdminDashboardImg from '../public/assets/projectImages/AdminDashboardImg.
 import AdvancedAuthImg from '../public/assets/projectImages/AdvancedAuthImg.png';
 import ExpenseTrackerImg from '../public/assets/projectImages/ExpenseTrackerImg.png';
 import XCloneImg from '../public/assets/projectImages/XCloneImg.png';
-
+import NyxiaImg from '../public/assets/projectImages/NyxiaImg.png';
+import IntervueImg from '../public/assets/projectImages/IntervueImg.png';
 import ProjectItem from './ProjectItem';
 
 const Projects = () => {
@@ -19,6 +20,18 @@ const Projects = () => {
         </p>
         <h2 className='py-4'>What I&apos;ve Built</h2>
         <div className='grid md:grid-cols-2 gap-8'>
+        <ProjectItem
+            title='Nyxia-My Social Media App'
+            backgroundImg={NyxiaImg}
+            projectUrl='https://nyxia-two.vercel.app/'
+            tech='Next + tailwindcss + Postgres'
+          />
+          <ProjectItem
+            title='Intervue - A Video Call interview platform'
+            backgroundImg={IntervueImg}
+            projectUrl='https://interview-platform-1vqs.vercel.app/'
+            tech='Next + tailwindcss + Convex'
+          />
           <ProjectItem
             title='Online Chat Application'
             backgroundImg={RealtimeChatImg}
@@ -47,7 +60,7 @@ const Projects = () => {
 
           />
           <ProjectItem
-            title='Advanced Authentication System'
+            title='X Clone'
             backgroundImg={XCloneImg}
             projectUrl='https://x-clone-b8bm.onrender.com'
             tech='MERN tailwindcss DaisyUi'
