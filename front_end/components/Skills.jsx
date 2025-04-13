@@ -9,7 +9,7 @@ const skills = [
   { name: "React", icon: <FaReact className="text-blue-400" /> },
   { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400" /> },
   { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-  { name: "Next.js", icon: <SiNextdotjs className="text-gray-400" /> },
+  { name: "Next.js", icon: <SiNextdotjs className="text-black-400" /> },
   { name: "Express.js", icon: <SiExpress className="text-gray-500" /> },
   { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
 ];
@@ -27,11 +27,18 @@ export default function SkillsShowcase() {
         {skills.map((skill, index) => (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.2, rotate: 3 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{
+              scale: 1.2,
+              rotate: 720,
+              transition: { duration: 0.1, ease:"circOut" }
+            }}
+            whileTap={{
+              scale: 0.9,
+              transition: { duration: 0.1 } 
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
+            transition={{ duration: 1, delay: index * 0.1 }}
             className="relative group flex flex-col items-center p-8 bg-white/10 backdrop-blur-lg shadow-lg rounded-3xl border border-white/20 hover:border-white/40 transition duration-300"
           >
             <div className="text-6xl mb-4 transition-all group-hover:scale-110 group-hover:rotate-6 drop-shadow-md">
@@ -40,7 +47,7 @@ export default function SkillsShowcase() {
             <p className="text-xl font-semibold tracking-wide text-gray-800 group-hover:text-black transition">
               {skill.name}
             </p>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover:opacity-20 transition-all rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#9B4DFF]  to-[#4D96FF] opacity-0 group-hover:opacity-50 transition-all rounded-3xl"></div>
           </motion.div>
         ))}
       </div>

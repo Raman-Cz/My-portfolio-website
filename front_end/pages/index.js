@@ -7,13 +7,10 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 
-
-
-
 export default function Home() {
   return (
     <div>
-        <Head>
+        <Head >
   <title>Raman | Full-Stack Developer</title>
   <meta name="description" content="Portfolio of Raman Singh, a Full-Stack Developer" />
 </Head>
