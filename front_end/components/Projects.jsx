@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import Link from 'next/link';
+
 import React from 'react';
 import RealtimeChatImg from '../public/assets/projectImages/RealtimeChatImg.png';
 import SpotifyCloneImg from '../public/assets/projectImages/SpotifyCloneImg.png';
@@ -14,16 +13,13 @@ import {motion} from 'framer-motion';
 
 const Projects = () => {
   return (
-    <div id='projects' className='w-full'>
-      <motion.div initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true, amount: 0.3 }} className='max-w-[1240px] mx-auto px-2 py-16'>
+    <div id='projects' className='w-full p-4 min-h-screen'>
+      <motion.div  className='max-w-[1240px] mx-auto px-2 py-16'>
         <p className='text-xl tracking-widest uppercase text-[#3131b8]'>
           Projects
         </p>
         <h2 className='py-4'>What I&apos;ve Built</h2>
-        <div className='grid md:grid-cols-2 gap-8'>
+        <div className='p-2 m-2 grid md:grid-cols-2 gap-8'>
         <ProjectItem
             title='Nyxia-My Social Media App'
             backgroundImg={NyxiaImg}

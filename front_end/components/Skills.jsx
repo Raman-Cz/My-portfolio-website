@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb, SiNextdotjs, SiExpress } from "react-icons/si";
+import { SiTailwindcss, SiMongodb, SiNextdotjs, SiExpress, SiTypescript } from "react-icons/si";
 
 const skills = [
   { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
   { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
   { name: "JavaScript", icon: <FaJs className="text-yellow-500" /> },
+  { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
   { name: "React", icon: <FaReact className="text-blue-400" /> },
   { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400" /> },
   { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
@@ -19,7 +20,7 @@ export default function SkillsShowcase() {
     <div id="skills" className="min-h-screen bg-white text-black flex flex-col items-center justify-center px-6 relative overflow-hidden">
       
       
-      <h2 className="text-5xl font-extrabold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg">
+      <h2 className="text-4xl font-extrabold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg">
         My Tech Stack
       </h2>
       
@@ -42,7 +43,7 @@ export default function SkillsShowcase() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: index * 0.1 }}
-            className="relative group flex flex-col items-center p-8 bg-white/10 backdrop-blur-lg shadow-lg rounded-3xl border border-white/20 hover:border-white/40 transition duration-300"
+            className="relative mb-10 group flex flex-col items-center p-8 bg-white/10 backdrop-blur-lg shadow-lg rounded-3xl border border-white/20 hover:border-white/40 transition duration-300"
           >
             <div className="text-6xl mb-4 transition-all group-hover:scale-110 group-hover:rotate-6 drop-shadow-md">
               {skill.icon}
