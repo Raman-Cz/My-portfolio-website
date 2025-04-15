@@ -4,7 +4,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
-import Typewriter from "typewriter-effect";
+import {Typewriter} from "react-simple-typewriter";
 
 const Main = () => {
   return (
@@ -57,18 +57,15 @@ const Main = () => {
           </h1>
 
           <h2 className="py-2 text-gray-700 text-2xl md:text-3xl font-semibold min-h-[60px]">
-            <Typewriter
-              options={{
-                strings: [
-                  "A Full-Stack Developer",
-                  "Next.js Enthusiast",
-                  "Game Developer",
-                  "AI Explorer",
-                ],
-                autoStart: true,
-                loop: true,
-              }}
-            />
+          <Typewriter
+          words={['Full-Stack Developer', 'Game Developer', 'AI/ML Enthusiast']}
+          loop={Infinity}
+          cursor
+          cursorStyle='|'
+          typeSpeed={70}
+          deleteSpeed={20}
+          delaySpeed={2000}
+        />
           </h2>
 
           <p className="py-4 text-gray-600 max-w-[80%] mx-auto text-md">
