@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import { Parallax } from "react-scroll-parallax";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
   <title>Raman | Full-Stack Developer</title>
   <meta name="description" content="Portfolio of Raman Singh, a Full-Stack Developer" />
 </Head>
+
         <Main />
         <About />
         <Skills />

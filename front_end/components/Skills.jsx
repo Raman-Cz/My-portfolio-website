@@ -23,7 +23,10 @@ export default function SkillsShowcase() {
         My Tech Stack
       </h2>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-5xl">
+      <motion.div initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true, amount: 0.3 }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-5xl">
         {skills.map((skill, index) => (
           <motion.div
             key={index}
@@ -50,7 +53,7 @@ export default function SkillsShowcase() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#9B4DFF]  to-[#4D96FF] opacity-0 group-hover:opacity-50 transition-all rounded-3xl"></div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
