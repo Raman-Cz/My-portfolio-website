@@ -6,11 +6,50 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
+const buttonModifier = `
+  relative overflow-hidden
+  px-10 py-4 font-bold uppercase tracking-wider text-white
+  bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0f172a]
+  rounded-full
+  hover:shadow-[0_0_25px_rgba(30,64,175,0.9),0_0_50px_rgba(59,130,246,1)]
+  hover:scale-105 active:scale-95
+  transition-all duration-200 ease-out
+  before:content-[''] before:absolute before:top-0 before:left-[-75%]
+  before:w-[50%] before:h-full
+  before:bg-gradient-to-br before:from-transparent before:via-white before:to-transparent
+  before:opacity-80 before:skew-x-[-20deg]
+  hover:before:animate-[shine_0.5s_linear]
+`;
+
 const Main = () => {
   return (
-    <div id="home" className="w-full h-screen text-center bg-white overflow-x-hidden">
-      <div className="flex flex-col md:flex-row max-w-[1240px] w-full h-full mx-auto p-4 justify-center items-center">
-        
+    <div id="home" className="relative w-full h-screen text-center bg-white overflow-hidden">
+      
+      {/* Floating background shapes */}
+      <motion.div
+        className="absolute w-64 h-64 bg-blue-600/30 rounded-full top-20 left-10"
+        animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.1 }}
+      />
+      <motion.div
+        className="absolute w-48 h-48 bg-blue-600/50 rounded-full bottom-10 right-20"
+        animate={{ y: [0, -20, 0], x: [0, -15, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.1 }}
+      />
+      <motion.svg
+        className="absolute top-1/4 left-3/4 w-50 h-50 opacity-90"
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 60, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.1, rotate: 10 }}
+      >
+        <polygon points="10,0 20,20 0,20" fill="#3b82f6" />
+      </motion.svg>
+
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col md:flex-row max-w-[1240px] w-full h-full mx-auto p-4 justify-center items-center">
+
         {/* Profile Image Glow */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -24,14 +63,14 @@ const Main = () => {
               scale: [1, 1.3, 1],
               opacity: [0.6, 0.2, 0.6],
               boxShadow: [
-                "0px 0px 15px #5651e5",
-                "0px 0px 30px #5651e5",
-                "0px 0px 15px #5651e5",
+                "0px 0px 15px rgba(30,64,175,0.8)",
+                "0px 0px 30px rgba(59,130,246,1)",
+                "0px 0px 15px rgba(30,64,175,0.8)",
               ],
             }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
-          <div className="relative w-full h-full rounded-full border-4 border-[#5651e5] overflow-hidden">
+          <div className="relative w-full h-full rounded-full border-0 border-[#1e3a8a] overflow-hidden">
             <img
               src="/assets/me.png"
               alt="Profile"
@@ -53,60 +92,39 @@ const Main = () => {
 
           <h1 className="py-4 text-gray-700 text-3xl sm:text-4xl md:text-5xl font-bold">
             Hey there, I'm{" "}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0f172a] bg-clip-text text-transparent">
               Raman
             </span>
           </h1>
 
           <h2 className="py-2 text-gray-700 text-xl sm:text-2xl md:text-3xl font-semibold break-words">
-            <span className="inline-block max-w-full">
-              <Typewriter
-                words={['Full-Stack Developer', 'Game Developer', 'AI/ML Enthusiast']}
-                loop={Infinity}
-                cursor
-                cursorStyle="|"
-                typeSpeed={70}
-                deleteSpeed={20}
-                delaySpeed={2000}
-              />
-            </span>
+            <Typewriter
+              words={['Full-Stack Developer', 'Game Developer', 'AI/ML Enthusiast']}
+              loop={Infinity}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={20}
+              delaySpeed={2000}
+            />
           </h2>
 
           <p className="py-4 text-gray-600 text-sm sm:text-md md:text-md max-w-[90%] sm:max-w-[80%] mx-auto">
-            I specialize in JavaScript, React, Next.js, Node.js, and more—
-            blending frontend elegance with backend power. Whether it's
-            designing interactive UIs, optimizing databases, or implementing
-            AI-driven features, I love bringing ideas to life through code.
+            I’m Raman Singh, a Full-Stack Developer and Machine Learning enthusiast with a passion for building scalable, real-time web applications and data-driven solutions. I specialize in JavaScript, TypeScript, React, Next.js, Node.js, and Python, blending frontend elegance with backend efficiency. From crafting interactive UIs and implementing secure REST APIs to developing predictive ML models and real-time communication platforms, I thrive on turning complex ideas into seamless digital experiences.
           </p>
 
           {/* Social Icons */}
           <div className="flex flex-wrap items-center justify-center gap-5 py-4">
-            <a
-              href="https://www.linkedin.com/in/raman-singh-343b212b7/"
-              target="_blank"
-              className="rounded-full shadow-lg shadow-gray-400 p-3 sm:p-4 cursor-pointer hover:scale-110 transition"
-            >
+            <a href="https://www.linkedin.com/in/raman-singh-343b212b7/" target="_blank" className={buttonModifier}>
               <FaLinkedinIn size={20} />
             </a>
-            <a
-              href="https://github.com/raman-Cz"
-              target="_blank"
-              className="rounded-full shadow-lg shadow-gray-400 p-3 sm:p-4 cursor-pointer hover:scale-110 transition"
-            >
+            <a href="https://github.com/raman-Cz" target="_blank" className={buttonModifier}>
               <FaGithub size={20} />
             </a>
-            <a
-              href="mailto:raman.singh.ug22@nsut.ac.in"
-              target="_blank"
-              className="rounded-full shadow-lg shadow-gray-400 p-3 sm:p-4 cursor-pointer hover:scale-110 transition"
-            >
+            <a href="mailto:raman.singh.ug22@nsut.ac.in" target="_blank" className={buttonModifier}>
               <AiOutlineMail size={20} />
             </a>
-            <a
-              href="/assets/Current Resume.pdf"
-              download="MyResume.pdf"
-              className="rounded-full shadow-lg shadow-gray-400 p-3 sm:p-4 cursor-pointer hover:scale-110 transition"
-            >
+            <a href="/assets/Resume1.pdf" download="MyResume.pdf" className={buttonModifier}>
               <BsFillPersonLinesFill size={20} />
             </a>
           </div>

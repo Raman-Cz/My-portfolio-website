@@ -31,3 +31,98 @@ html{
     @apply shadow-xl shadow-gray-400 rounded-xl uppercase bg-gradient-to-r from-[#5651e5] to-[#709dff] text-white
   }
 }
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+@layer utilities {
+  .animate-\[shine_0\.75s_linear\] {
+    animation: shine 0.75s linear forwards;
+  }
+}
+/* Tailwind + custom CSS animation */
+.card {
+  position: relative;
+  transition: 0.5s;
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 50%;
+  height: 100%;
+  border-radius: 8px;
+
+  /* 🔹 Metallic Blue → Black gradient */
+  background: linear-gradient(315deg, #3a9bdc, #1e3c72, #000000);
+
+  transform: skewX(15deg);
+  transition: 0.5s;
+}
+
+.card::after {
+  filter: blur(50px);
+}
+
+.card:hover::before,
+.card:hover::after {
+  transform: skewX(0deg);
+  left: 20px;
+  width: calc(100% - 90px);
+}
+
+/* floating highlight */
+.highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.highlight::before,
+.highlight::after {
+  content: '';
+  position: absolute;
+  border-radius: 8px;
+  background: rgba(58, 155, 220, 0.4); /* lighter metallic blue glow */
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: 0.5s;
+  animation: float 2s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
+}
+
+.highlight::before {
+  top: -50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+}
+
+.card:hover .highlight::before {
+  opacity: 1;
+}
+
+.highlight::after {
+  bottom: -50px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  animation-delay: -1s;
+}
+
+.card:hover .highlight::after {
+  opacity: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(10px); }
+  50% { transform: translate(-10px); }
+}
