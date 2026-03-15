@@ -1,47 +1,82 @@
-// ProjectItem.jsx
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+import { FiExternalLink } from "react-icons/fi";
 
-const ProjectItem = ({ title, backgroundImg, info, projectUrl }) => {
+const ProjectItem = ({
+  title,
+  backgroundImg,
+  projectUrl,
+  info,
+  tags = [],
+  index = 0,
+}) => {
   return (
-    <div className="card group relative w-[600px] h-[450px] flex justify-center items-center m-6">
-      <span className="highlight"></span>
-
-      {/* Inner card container */}
-      <div className="relative z-10 h-[300px] w-[500px] rounded-lg overflow-hidden shadow-lg">
-        
-        {/* Image (default state) */}
-        <Image
-          src={backgroundImg}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="group brutalist-card flex-shrink-0 w-[340px] sm:w-[400px] cursor-pointer"
+    >
+      {/* Image */}
+      <div className="relative overflow-hidden h-[220px] border-b-3 border-[var(--border)]">
+        <img
+          src={backgroundImg?.src || backgroundImg}
           alt={title}
-          fill
-          className="object-cover transition-opacity duration-500 group-hover:opacity-0"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-
-        {/* Text overlay (hidden by default, appears on hover) */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center 
-          text-center text-white p-6 bg-black/40 backdrop-blur-sm opacity-0 
-          transition-opacity duration-500 group-hover:opacity-100">
-          
-          <h2 className="text-2xl font-bold mb-2">{title}</h2>
-          <p className="text-m mb-3">{info}</p>
-
-          <Link
-  href={projectUrl}
-  className="px-5 py-2  
-             bg-gradient-to-r from-blue-900 to-blue-500 
-             text-white font-medium 
-             shadow-lg shadow-blue-500 
-             transition transform hover:scale-105 hover:shadow-white"
->
-  View Project
-</Link>
-
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-[var(--bg-dark)]/0 group-hover:bg-[var(--bg-dark)]/70 transition-all duration-300 flex items-center justify-center">
+          <motion.a
+            href={projectUrl}
+            target="_blank"
+            rel="noreferrer"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileHover={{ scale: 1.1 }}
+            className="opacity-0 group-hover:opacity-100 transition-all duration-300 brutalist-btn text-[10px]"
+          >
+            View Live <FiExternalLink size={12} />
+          </motion.a>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default ProjectItem
+      {/* Content */}
+      <div className="p-5">
+        <h3 className="text-lg font-bold uppercase tracking-wide mb-2 leading-tight group-hover:text-[var(--accent)] transition-colors">
+          {title}
+        </h3>
+
+        <p
+          className="text-xs leading-relaxed mb-4 line-clamp-3 font-mono"
+          style={{ color: "var(--text-muted)" }}
+        >
+          {info}
+        </p>
+
+        {/* Tags */}
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {tags.map((tag) => (
+              <span key={tag} className="tag-chip">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Action */}
+        <a
+          href={projectUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] font-mono text-[var(--accent)] hover:underline decoration-2 underline-offset-4 transition-all"
+        >
+          View Project <FiExternalLink size={12} />
+        </a>
+      </div>
+    </motion.div>
+  );
+};
+
+export default ProjectItem;

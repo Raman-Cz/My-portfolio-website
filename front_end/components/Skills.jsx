@@ -1,60 +1,166 @@
+"use client";
+import React from "react";
 import { motion } from "framer-motion";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb, SiNextdotjs, SiExpress, SiTypescript } from "react-icons/si";
+import {
+  FaReact, FaNodeJs, FaPython,
+} from "react-icons/fa";
+import {
+  SiNextdotjs, SiTailwindcss, SiPostgresql, SiMongodb,
+  SiPrisma, SiSocketdotio, SiTypescript, SiExpress,
+} from "react-icons/si";
 
-const skills = [
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
-  { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
-  { name: "JavaScript", icon: <FaJs className="text-yellow-500" /> },
-  { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
-  { name: "React", icon: <FaReact className="text-blue-400" /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400" /> },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-  { name: "Next.js", icon: <SiNextdotjs className="text-black-400" /> },
-  { name: "Express.js", icon: <SiExpress className="text-gray-500" /> },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
+/* ─── Skill Data ─────────────────────────────────────── */
+const skillCategories = [
+  {
+    category: "Frontend",
+    skills: [
+      { name: "React", icon: <FaReact /> },
+      { name: "Next.js", icon: <SiNextdotjs /> },
+      { name: "TypeScript", icon: <SiTypescript /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+    ],
+  },
+  {
+    category: "Backend",
+    skills: [
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "Express", icon: <SiExpress /> },
+      { name: "Python", icon: <FaPython /> },
+    ],
+  },
+  {
+    category: "Databases",
+    skills: [
+      { name: "PostgreSQL", icon: <SiPostgresql /> },
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "Prisma", icon: <SiPrisma /> },
+    ],
+  },
+  {
+    category: "Real-Time",
+    skills: [
+      { name: "Socket.io", icon: <SiSocketdotio /> },
+    ],
+  },
 ];
 
-export default function SkillsShowcase() {
+const mindsetLines = [
+  "I think in systems, not features.",
+  "Every project starts with understanding the problem deeply.",
+  "I optimize for developer experience and user delight.",
+  "Clean architecture today saves debugging tomorrow.",
+  "I'm always learning — currently exploring LLMs & MLOps.",
+];
+
+export default function Skills() {
   return (
-    <div id="skills" className="min-h-screen bg-white text-black flex flex-col items-center justify-center px-6 relative overflow-hidden">
-      
-      
-      <h2 className="text-4xl font-extrabold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg">
-        My Tech Stack
-      </h2>
-      
-      <motion.div initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true, amount: 0.3 }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-5xl">
-        {skills.map((skill, index) => (
-          <motion.div
-            key={index}
-            whileHover={{
-              scale: 1.2,
-              rotate: 720,
-              transition: { duration: 0.1, ease:"circOut" }
-            }}
-            whileTap={{
-              scale: 0.9,
-              transition: { duration: 0.1 } 
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: index * 0.1 }}
-            className="relative mb-10 group flex flex-col items-center p-8 bg-white/10 backdrop-blur-lg shadow-lg rounded-3xl border border-white/20 hover:border-white/40 transition duration-300"
-          >
-            <div className="text-6xl mb-4 transition-all group-hover:scale-110 group-hover:rotate-6 drop-shadow-md">
-              {skill.icon}
-            </div>
-            <p className="text-xl font-semibold tracking-wide text-gray-800 group-hover:text-black transition">
-              {skill.name}
-            </p>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#9B4DFF]  to-[#4D96FF] opacity-0 group-hover:opacity-50 transition-all rounded-3xl"></div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
+    <section
+      id="skills"
+      className="relative w-full py-28 px-6 overflow-hidden"
+      style={{ background: "var(--bg)" }}
+    >
+      <div className="max-w-[1240px] mx-auto w-full relative z-10">
+        {/* Section tag */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <span className="section-tag">Engineering Mindset</span>
+        </motion.div>
+
+        {/* Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="mt-6 mb-12"
+        >
+          How I<br />
+          Think<span className="text-accent">.</span>
+        </motion.h2>
+
+        {/* Mindset text lines — staggered reveal */}
+        <div className="max-w-3xl mb-20">
+          {mindsetLines.map((line, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              viewport={{ once: true }}
+              className="border-b-3 border-[var(--border)] py-4 flex items-start gap-4"
+            >
+              <span className="text-xs font-mono font-bold text-[var(--accent)] min-w-[2rem]">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-base sm:text-lg font-medium leading-relaxed">
+                {line}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Skills Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-6"
+        >
+          <h3 className="mb-8">
+            Tech Stack<span className="text-accent">.</span>
+          </h3>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0">
+          {skillCategories.map((cat, catIdx) => (
+            <motion.div
+              key={cat.category}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: catIdx * 0.1 }}
+              viewport={{ once: true }}
+              className={`p-6 border-3 border-[var(--border)] ${
+                catIdx > 0 ? "border-l-0 sm:border-l-3 lg:border-l-0" : ""
+              } ${catIdx >= 2 ? "border-t-0 lg:border-t-3" : ""} ${catIdx === 1 ? "border-t-0 sm:border-t-3" : ""}`}
+            >
+              <h4 className="text-xs font-mono font-bold uppercase tracking-[0.3em] text-[var(--accent)] mb-5">
+                {cat.category}
+              </h4>
+              <div className="flex flex-col gap-3">
+                {cat.skills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{
+                      x: 6,
+                      backgroundColor: "var(--text)",
+                      color: "var(--text-inverse)",
+                    }}
+                    className="flex items-center gap-3 px-3 py-2 border-2 border-[var(--border)] text-sm font-semibold cursor-default transition-all duration-150"
+                  >
+                    <span className="text-base">{skill.icon}</span>
+                    {skill.name}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Large decorative number */}
+      <div
+        className="absolute -right-4 top-1/2 -translate-y-1/2 text-[20rem] font-bold leading-none pointer-events-none select-none hidden lg:block"
+        style={{ color: "rgba(15, 23, 42, 0.04)" }}
+      >
+        04
+      </div>
+
+      <div className="brutalist-divider absolute bottom-0 left-0" />
+    </section>
   );
 }

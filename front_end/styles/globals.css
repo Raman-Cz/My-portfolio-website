@@ -1,128 +1,833 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html{
-  scroll-behavior: smooth;
+/* â”€â”€â”€ Neo-Brutalist Design Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+:root {
+  --bg: #FDFBF7;
+  --bg-dark: #0F172A;
+  --text: #0F172A;
+  --text-inverse: #FDFBF7;
+  --text-muted: #475569;
+  --accent: #E8572A;
+  --accent-2: #2563EB;
+  --border: #0F172A;
+  --border-width: 3px;
+  --shadow: 6px 6px 0px #0F172A;
+  --shadow-sm: 3px 3px 0px #0F172A;
+  --shadow-lg: 10px 10px 0px #0F172A;
+  --shadow-accent: 6px 6px 0px #E8572A;
 }
 
-@layer base{
-  body {
-    @apply bg-white text-[#1f2937] tracking-wide
-  }
+/* â”€â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+html {
+  scroll-behavior: auto;
+}
 
-  h1,h2,h3,h4,h5,h6 {
-    @apply font-bold
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  @apply tracking-wide antialiased;
+}
+
+/* Grid-line pattern overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold uppercase;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl
+    @apply text-5xl sm:text-7xl md:text-8xl lg:text-9xl;
+    line-height: 0.9;
   }
 
-  h2{
-    @apply text-3xl sm:text-4xl
+  h2 {
+    @apply text-4xl sm:text-5xl md:text-6xl;
+    line-height: 0.95;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl;
   }
 
   li {
-    @apply cursor-pointer
+    @apply cursor-pointer;
   }
 
   button {
-    @apply shadow-xl shadow-gray-400 rounded-xl uppercase bg-gradient-to-r from-[#5651e5] to-[#709dff] text-white
+    @apply uppercase font-bold tracking-wider;
   }
-}
-@keyframes shine {
-  0% { left: -75%; }
-  100% { left: 125%; }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--text-inverse);
+  }
 }
 
-@layer utilities {
-  .animate-\[shine_0\.75s_linear\] {
-    animation: shine 0.75s linear forwards;
+/* â”€â”€â”€ Scrollbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-left: var(--border-width) solid var(--border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* â”€â”€â”€ Brutalist Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.brutalist-card {
+  background: var(--bg);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.brutalist-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translate(-2px, -2px);
+}
+
+/* â”€â”€â”€ Brutalist Button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.brutalist-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--text);
+  color: var(--text-inverse);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.brutalist-btn:hover {
+  background: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translate(-2px, -2px);
+}
+
+.brutalist-btn:active {
+  box-shadow: 0 0 0 var(--border);
+  transform: translate(3px, 3px);
+}
+
+.brutalist-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--text);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.brutalist-btn-outline:hover {
+  background: var(--text);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow);
+  transform: translate(-2px, -2px);
+}
+
+/* â”€â”€â”€ Dark Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.section-dark {
+  background: var(--bg-dark);
+  color: var(--text-inverse);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+  color: var(--text-inverse);
+}
+
+/* â”€â”€â”€ Section Tag â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.section-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 0.35rem 0.75rem;
+  border: 2px solid var(--accent);
+  display: inline-block;
+}
+
+/* â”€â”€â”€ Accent Text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.text-accent {
+  color: var(--accent);
+}
+
+.text-accent-2 {
+  color: var(--accent-2);
+}
+
+/* â”€â”€â”€ Thick Divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.brutalist-divider {
+  width: 100%;
+  height: var(--border-width);
+  background: var(--border);
+}
+
+/* â”€â”€â”€ Strikethrough Decoration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.decoration-accent {
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 6px;
+}
+
+/* â”€â”€â”€ Marquee â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
-/* Tailwind + custom CSS animation */
-.card {
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* â”€â”€â”€ Stagger Reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* â”€â”€â”€ Lenis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* â”€â”€â”€ Tag Chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tag-chip {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  transition: all 0.15s ease;
+}
+
+.tag-chip:hover {
+  background: var(--text);
+  color: var(--text-inverse);
+}
+
+/* â”€â”€â”€ Timeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.timeline-line {
+  width: 4px;
+  background: var(--border);
+}
+
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--border);
+  background: var(--accent);
+}
+
+/* Journey Story (Timeline v2) */
+.journey-bg {
+  opacity: 1;
+  background:
+    radial-gradient(1400px 700px at 15% 10%, rgba(232, 87, 42, 0.18) 0%, rgba(232, 87, 42, 0) 50%),
+    radial-gradient(1200px 650px at 85% 20%, rgba(37, 99, 235, 0.14) 0%, rgba(37, 99, 235, 0) 55%),
+    linear-gradient(180deg, #FAFAFA 0%, var(--bg) 60%);
+}
+
+.section-dark .journey-bg {
+  background:
+    radial-gradient(1400px 700px at 15% 10%, rgba(232, 87, 42, 0.15) 0%, rgba(232, 87, 42, 0) 50%),
+    radial-gradient(1200px 650px at 85% 20%, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 55%),
+    linear-gradient(180deg, var(--bg-dark) 0%, #080C17 60%);
+}
+
+.journey-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 84px 84px;
+  opacity: 0.55;
+}
+
+.section-dark .journey-bg::before {
+  background-image:
+    linear-gradient(rgba(253, 251, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 251, 247, 0.04) 1px, transparent 1px);
+}
+
+.section-dark .journey-card h3 {
+  color: var(--text);
+}
+
+.journey-stage {
   position: relative;
-  transition: 0.5s;
 }
 
-.card::before,
-.card::after {
-  content: '';
+.journey-stage::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 50px;
-  width: 50%;
+  inset: -14px;
+  background: var(--j-accent, var(--accent));
+  border: var(--border-width) solid var(--border);
+  transform: translate(10px, 10px) rotate(-0.8deg);
+  z-index: -1;
+}
+
+.journey-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  border: var(--border-width) solid var(--border);
+  background: transparent;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.journey-nav-btn:hover:not(:disabled) {
+  background: var(--text);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow);
+  transform: translate(-2px, -2px);
+}
+
+.journey-nav-btn:active:not(:disabled) {
+  box-shadow: 0 0 0 var(--border);
+  transform: translate(3px, 3px);
+}
+
+.journey-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.journey-nav-btn:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.journey-progress {
+  width: 100%;
+  height: 12px;
+  background: var(--bg);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.journey-progress__fill {
   height: 100%;
-  border-radius: 8px;
-
-  /* 🔹 Metallic Blue → Black gradient */
-  background: linear-gradient(315deg, #3a9bdc, #1e3c72, #000000);
-
-  transform: skewX(15deg);
-  transition: 0.5s;
+  background: var(--j-accent, var(--accent));
+  transition: width 0.25s ease;
 }
 
-.card::after {
-  filter: blur(50px);
+.journey-phase {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.55rem;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
-.card:hover::before,
-.card:hover::after {
-  transform: skewX(0deg);
-  left: 20px;
-  width: calc(100% - 90px);
+.journey-mini {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-/* floating highlight */
-.highlight {
+.journey-live {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.55rem;
+  background: var(--text);
+  color: var(--text-inverse);
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.journey-period {
+  font-family: "Archivo", "Space Grotesk", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+}
+
+.journey-stamp {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: var(--border-width) solid var(--border);
+  background: var(--j-accent, var(--accent));
+  color: var(--text-inverse);
+  box-shadow: var(--shadow);
+  font-family: "Archivo", "Space Grotesk", sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  transform: rotate(8deg);
+}
+
+.journey-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.55rem;
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.journey-chip:hover {
+  background: var(--text);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-sm);
+  transform: translate(-1px, -1px);
+}
+
+.journey-hint {
+  padding-top: 0.75rem;
+  border-top: 2px dashed rgba(15, 23, 42, 0.25);
+}
+
+.journey-kbd {
+  display: inline-block;
+  padding: 0.05rem 0.35rem;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+  color: var(--text);
+}
+
+.journey-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.journey-rail__dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: var(--border-width) solid var(--border);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.journey-rail__dot::after {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 5;
+  inset: 10px;
+  border-radius: 999px;
+  background: var(--j-accent, var(--accent));
+  border: 2px solid var(--border);
+}
+
+.journey-rail__dot:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+
+.journey-rail__dot:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.journey-rail__dot[aria-current="step"] {
+  background: var(--text);
+}
+
+.journey-chapter {
+  position: relative;
+  scroll-margin-top: 110px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.journey-chapter[data-active="true"] {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.journey-chapter:focus-within {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 6px;
+}
+
+.journey-jump {
+  padding: 0.5rem 0.85rem;
+  border: var(--border-width) solid var(--border);
+  background: transparent;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.journey-jump:hover {
+  background: var(--accent);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow);
+  transform: translate(-2px, -2px);
+}
+
+.journey-jump:active {
+  box-shadow: 0 0 0 var(--border);
+  transform: translate(3px, 3px);
+}
+
+.journey-jump:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.journey-word {
+  font-family: "Archivo", "Space Grotesk", sans-serif;
+  font-weight: 900;
+  font-size: clamp(6rem, 22vw, 18rem);
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  color: rgba(15, 23, 42, 0.05);
+  -webkit-text-stroke: 2px rgba(15, 23, 42, 0.08);
+}
+
+/* Storyrail v2 additions */
+.journey-flag {
+  width: 50px;
+  height: 50px;
+  background: var(--text);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow);
+  transform: rotate(-12deg);
+}
+
+.journey-halo {
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.journey-halo::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(circle at 20% 20%, rgba(232, 87, 42, 0.12), transparent 35%),
+              radial-gradient(circle at 80% 60%, rgba(37, 99, 235, 0.12), transparent 35%);
   pointer-events: none;
 }
 
-.highlight::before,
-.highlight::after {
-  content: '';
+.journey-track {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 0.5rem;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text) transparent;
+}
+
+.journey-track::-webkit-scrollbar {
+  height: 8px;
+}
+.journey-track::-webkit-scrollbar-thumb {
+  background: var(--text);
+}
+.journey-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.journey-card {
+  min-width: min(90vw, 520px);
+  scroll-snap-align: center;
+  background: white;
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 1.4rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.journey-card::before {
+  content: "";
   position: absolute;
-  border-radius: 8px;
-  background: rgba(58, 155, 220, 0.4); /* lighter metallic blue glow */
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  transition: 0.5s;
-  animation: float 2s ease-in-out infinite;
-  box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
+  inset: 12px;
+  border: 2px dashed rgba(15, 23, 42, 0.18);
+  pointer-events: none;
 }
 
-.highlight::before {
-  top: -50px;
-  left: 50px;
-  width: 100px;
-  height: 100px;
+.journey-card[data-active="true"] {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-lg);
 }
 
-.card:hover .highlight::before {
-  opacity: 1;
+.journey-card:focus-within {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 6px;
 }
 
-.highlight::after {
-  bottom: -50px;
-  right: 50px;
-  width: 100px;
-  height: 100px;
-  animation-delay: -1s;
+.journey-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
 }
 
-.card:hover .highlight::after {
-  opacity: 1;
+.journey-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(10px); }
-  50% { transform: translate(-10px); }
+.journey-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--j-accent, var(--accent));
+  border: 2px solid var(--border);
+  display: inline-block;
 }
+
+.journey-title {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0.2rem 0;
+}
+
+.journey-body {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+}
+
+.journey-taglist {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.journey-card__footer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journey-marquee {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border-top: var(--border-width) solid var(--border);
+  padding-top: 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+
+.journey-marquee__item {
+  padding: 0.45rem 0.8rem;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg);
+}
+
+.journey-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  background: var(--bg);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.journey-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.journey-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.journey-bullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--border);
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-nav-btn,
+  .journey-chip,
+  .journey-rail__dot,
+  .journey-chapter,
+  .journey-jump,
+  .journey-progress__fill {
+    transition: none !important;
+  }
+
+  .journey-stage::before {
+    transform: translate(10px, 10px) rotate(0deg);
+  }
+}/* â”€â”€â”€ Input Brutalist â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.brutalist-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: var(--border-width) solid var(--border);
+  padding: 0.75rem 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--text-inverse);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.brutalist-input::placeholder {
+  color: rgba(253, 251, 247, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+}
+
+.brutalist-input:focus {
+  border-color: var(--accent);
+}
+
+
